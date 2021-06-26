@@ -1,10 +1,16 @@
+import cx from 'classnames';
+
 import { IQuestionProps } from './@interfaces';
 
 import './question.scss';
 
-export function Question({ content, author, children }: IQuestionProps) {
+export function Question({ content, author, children, isAnswered, isHighlighted }: IQuestionProps) {
   return (
-    <div className="question">
+    <div className={cx(
+        'question',
+        { answered: isAnswered },
+        { highlighted: isHighlighted && !isAnswered }
+      )}>
       <p>{content}</p>
       <footer>
         <div className="user-info">
